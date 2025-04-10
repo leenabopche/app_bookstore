@@ -1,0 +1,23 @@
+{% extends 'store/base.html' %}
+
+{% block title %}{{ book.title }} Details{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4">
+    {% if book.image %}
+      <img src="{{ book.image.url }}" class="img-fluid rounded" alt="{{ book.title }}">
+    {% else %}
+      <img src="https://via.placeholder.com/300x400?text=No+Image" class="img-fluid rounded" alt="No Image">
+    {% endif %}
+  </div>
+  <div class="col-md-8">
+    <h2>{{ book.title }}</h2>
+    <p class="text-muted">By {{ book.author }}</p>
+    <p class="h4">$ {{ book.price }}</p>
+    <p>{{ book.description }}</p>
+    <a href="{% url 'add_to_cart' book.id %}" class="btn btn-primary">Add to Cart</a>
+    <a href="{% url 'book_list' %}" class="btn btn-secondary">Back to Books</a>
+  </div>
+</div>
+{% endblock %}
